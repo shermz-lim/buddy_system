@@ -24,6 +24,14 @@ bool LRU::isFull() {
   return ll.size() >= capacity;
 }
 
+bool LRU::isEmpty() {
+  return ll.empty();
+}
+
+bool LRU::containsKey(int key) {
+  return key_node_map.count(key) > 0;
+}
+
 void LRU::print() {
   for (auto it = ll.begin(); it != ll.end(); it++) {
     cout << *it;

@@ -18,7 +18,8 @@ class LRU {
   void erase(int key);
   // remove key at tail of LRU and return it
   int removeTail();
-  // whether LRU is full
   bool isFull();
+  bool isEmpty();
+  bool containsKey(int key);
   void print();
 };
