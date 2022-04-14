@@ -20,5 +20,7 @@ class PageReclamation {
   // reclaim a frame. Take from tail of inactive_lst, else the tail of active_lst. Returns frame reclaimed.
   // Throws an exception when there are no more frames to reclaim.
   int reclaim();
+  // remove a frame from the two lists
+  void remove(int frame_no);
   void print();
 };

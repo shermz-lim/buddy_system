@@ -79,7 +79,10 @@ void Simulator::deallocate(int seq_no, int num) {
   for (int to_free = prev_freed; to_free < num; to_free++) {
     Page page{seq_no, to_free};
     int free_frame_no = page_table[page];
-    if (free_frame_no != NULL_FRAME) freeFrame(free_frame_no);
+    if (free_frame_no != NULL_FRAME) {
+      reclaim_system.remove(free_frame_no);
+      freeFrame(free_frame_no);      
+    }
     page_table.erase(page);
   }
 

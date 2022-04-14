@@ -33,6 +33,14 @@ int PageReclamation::reclaim() {
   }
 }
 
+void PageReclamation::remove(int frame_no) {
+  if (inactive_lst.containsKey(frame_no)) {
+    inactive_lst.erase(frame_no);
+  } else if (active_lst.containsKey(frame_no)) {
+    active_lst.erase(frame_no);
+  }
+}
+
 void PageReclamation::print() {
   cout << "inactive list: ";
   inactive_lst.print();
