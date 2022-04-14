@@ -1,3 +1,5 @@
 *.dat
 *.out
 *.vscode
+.idea
+main
