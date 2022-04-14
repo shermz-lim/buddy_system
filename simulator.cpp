@@ -76,7 +76,7 @@ void Simulator::deallocate(int seq_no, int num) {
   int prev_freed = allocations[seq_no].freed;
 
   // iterate through each page to free
-  for (int to_free = prev_freed; to_free < num; to_free++) {
+  for (int to_free = prev_freed; to_free < (prev_freed + num) && to_free < allocations[seq_no].size; to_free++) {
     Page page{seq_no, to_free};
     int free_frame_no = page_table[page];
     if (free_frame_no != NULL_FRAME) {
@@ -86,7 +86,7 @@ void Simulator::deallocate(int seq_no, int num) {
     page_table.erase(page);
   }
 
-  allocations[seq_no].freed = num;
+  allocations[seq_no].freed = prev_freed + num;
 }
 
 void Simulator::print() {
