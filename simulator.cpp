@@ -73,20 +73,19 @@ void Simulator::access(int seq_no, int num) {
 }
 
 void Simulator::deallocate(int seq_no, int num) {
-  int prev_freed = allocations[seq_no].freed;
+  Page page{seq_no, num};
+  // page has already been freed
+  if (page_table.count(page) == 0) return;
 
-  // iterate through each page to free
-  for (int to_free = prev_freed; to_free < (prev_freed + num) && to_free < allocations[seq_no].size; to_free++) {
-    Page page{seq_no, to_free};
-    int free_frame_no = page_table[page];
-    if (free_frame_no != NULL_FRAME) {
-      reclaim_system.remove(free_frame_no);
-      freeFrame(free_frame_no);      
-    }
-    page_table.erase(page);
+  int free_frame_no = page_table[page];
+  // free frame associated with page if it exists
+  if (free_frame_no != NULL_FRAME) {
+    reclaim_system.remove(free_frame_no);
+    freeFrame(free_frame_no);
   }
 
-  allocations[seq_no].freed = prev_freed + num;
+  // free page
+  page_table.erase(page);
 }
 
 void Simulator::print() {
