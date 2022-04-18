@@ -1,13 +1,6 @@
 #include "buddy_allocator.h"
 #include "page_reclamation.h"
 
-// track allocations of simulator
-struct Allocation {
-  int seq_no;
-  int size;
-  int freed;
-};
-
 struct Page {
   int seq_no;
   int id;
@@ -30,7 +23,6 @@ class Simulator {
   PageReclamation reclaim_system;
   unordered_map<Page, int> page_table;
   unordered_map<int, Page> inverted_page_table;
-  unordered_map<int, Allocation> allocations;
  
   // alloc pages and reclaim if not enough
   pair<int,int> allocPagesWithReclaim(int size); 

@@ -49,8 +49,6 @@ void Simulator::allocate(int seq_no, int num) {
     int evicted_frame = reclaim_system.insert(frame_no);
     if (evicted_frame != NULL_FRAME) freeFrame(evicted_frame);
   }
-
-  allocations[seq_no] = {seq_no, num, 0};
 }
 
 void Simulator::access(int seq_no, int num) {
