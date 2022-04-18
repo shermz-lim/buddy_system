@@ -10,12 +10,14 @@ struct Page {
   }
 };
 
+namespace std {
 template<>
 struct hash<Page> {
   size_t operator()(const Page& p) const {
     return hash<int>{}(p.seq_no) ^ (hash<int>{}(p.id) << 1);
   }
 };
+}
 
 class Simulator {
  private:
