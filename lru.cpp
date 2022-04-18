@@ -33,10 +33,13 @@ bool LRU::containsKey(int key) {
 }
 
 void LRU::print() {
-  for (auto it = ll.begin(); it != ll.end(); it++) {
+  cout << "Size: " << ll.size() << endl;
+  cout << "Tail ~ [";
+  for (auto it = ll.rbegin(); it != ll.rend(); it++) {
     cout << *it;
-    if (it != prev(ll.end())) {
+    if (it != prev(ll.rend())) {
       cout << ", ";
     }
   }
+  cout << "] ~ Head";
 }

@@ -42,10 +42,10 @@ void PageReclamation::remove(int frame_no) {
 }
 
 void PageReclamation::print() {
-  cout << "inactive list: ";
+  cout << "------------------- Inactive List -------------------\n";
   inactive_lst.print();
   cout << endl;
-  cout << "active list: ";
+  cout << "------------------- Active List -------------------\n";
   active_lst.print();
   cout << endl;
 }

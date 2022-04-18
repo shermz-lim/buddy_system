@@ -88,4 +88,5 @@ void Simulator::deallocate(int seq_no, int num) {
 
 void Simulator::print() {
   buddy_allocator.printBuddyLists();
+  reclaim_system.print();
 }
