@@ -64,11 +64,11 @@ void BuddyAllocator::freePages(int base_addr, int size) {
 
 void BuddyAllocator::printBuddyLists() {
   cout << "------------------- Buddy Lists -------------------\n";
-  cout << "i | list of free blocks [start_addr, end_addr)\n";
+  cout << "i | list of free blocks [start_addr, end_addr]\n";
   for (int i = free_areas.size() - 1; i >= 0; i--) {
     cout << i << " : [";
     for (int addr : free_areas[i]) {
-      cout << "[" << addr << ", " << (addr + (1 << i)) << ")";
+      cout << "[" << addr << ", " << (addr + (1 << i) - 1) << "]";
       if (addr != free_areas[i].back()) {
         cout << ", ";
       }
